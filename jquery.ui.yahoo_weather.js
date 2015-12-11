@@ -3,7 +3,7 @@
 			_create : function() { // constructor
 					// provided url
 					var yahooWeatherAPIUrl = "http://query.yahooapis.com/v1/public/yql?q=select%20item%20from%20weather.forecast%20where%20location%3D%2222102%22&format=json";
-				    
+				    	var containerID = this.element[0].id;
 					$.ajax({ 
 						type: "get",
 						url : yahooWeatherAPIUrl,
@@ -11,7 +11,7 @@
 					}).done(function(jData, status, jqXHR){ //callback success function
 						if (status == 'success') {
 							if (jData != null && jData.query!=null && jData.query.results !== null) { // check for null
-								extractRelavantDtata(jData); // everything all all ok
+								extractRelavantDtata(jData,containerID); // everything all all ok
 							}
 							else { // json coming back with null values.
 								alert("Oh Snap! You seem to be having issues connecting to the internets. Please check your connection and try again!");
@@ -26,7 +26,7 @@
 /**
  * @Params: jData - json format data received by call back function 
  */		
-function extractRelavantDtata(jData) {
+function extractRelavantDtata(jData,containerID) {
 	var baseObject;
 	
 	if (jData.query.results.channel !=null && jData.query.results.channel.item !=null) {
@@ -66,7 +66,7 @@ function extractRelavantDtata(jData) {
 	}
 	
 	
-	$("#widgetContainer").html(""); // clear out the widget before rendering new data.
+	$("#"+containerID).html(""); // clear out the widget before rendering new data.
 	var widgetContainerHtml =  
 		$("<div/>")
 		.attr("class","yw_widgetContainer")
@@ -92,6 +92,6 @@ function extractRelavantDtata(jData) {
 				.attr("class","yw_allDayForecastClass")
 				.html(allForecasts)
 		);
-	$("#widgetContainer").html(widgetContainerHtml);
+	$("#"+containerID).html(widgetContainerHtml);
 }
 })(jQuery);
