@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+
+<link rel="stylesheet" href="css/yahooWeatherWidgetStyle.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script src="js/jquery.ui.yahoo_weather.js"></script>
+
+<title>Yahoo! Widget</title>
+
+<style type="text/css">
+html {
+	background-color: grey;
+}
+</style>
+</head>
+<body>
+
+	<!-- following Div tag with the id widgetContainer is required -->
+	<div id="widgetContainer"></div>
+	
+	<!-- call the following function on the tag the div tag that you created. -->
+	<script type="text/javascript">
+			$("#widgetContainer").yahoo_weather();
+	</script>
+</body>
+</html>
